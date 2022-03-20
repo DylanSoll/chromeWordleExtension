@@ -2,7 +2,7 @@ function defaulthandler(results)
 {
     console.log(results);
 }
-function create_form_data(testinput){
+function create_form_data(){
     testform = document.getElementById('testform'); //get the form element
     var fd = new FormData(testform); //create a form object since one does not exist
     fd.append("testinput", testinput); //to add an individual variable use a key and value
@@ -26,11 +26,32 @@ function new_ajax_helper(url, callback=defaulthandler, formobject=null, method='
     xhr.send(formobject); //send the form data
 }
 
+function get_ip(){
+    var ip = document.getElementById('ip_holder').value
+    return ip
+}
 
-chrome.runtime.onInstalled.addListener(()=>{
-    console.log('running')
+
+
+document.getElementById('forward').addEventListener('click', function(){
+    new_ajax_helper('http://'+get_ip()+'/forward')
 })
+document.getElementById('backward').addEventListener('click', function(){
+    new_ajax_helper('http://'+get_ip()+'/reverse')
+})
+document.getElementById('left').addEventListener('click', function(){
+    new_ajax_helper('http://'+get_ip()+'/left')
+})
+document.getElementById('right').addEventListener('click', function(){
+    new_ajax_helper('http://'+get_ip()+'/right')
+})
+document.getElementById('ip_holder').addEventListener('input', function(){
 
-document.getElementById('tester').addEventListener('click', function(){
-    new_ajax_helper('https://dsdg.pythonanywhere.com/load_messages', console.log, create_form_data('hit'))
+    console.log(get_ip())
+    try{
+        document.getElementById("videofeed").innerHTML = '<img src="http://'+get_ip()+'/videofeed" width=75% />'
+    }catch(err) {
+        document.getElementById("videofeed").innerHTML = err.message;
+      }
+    
 })

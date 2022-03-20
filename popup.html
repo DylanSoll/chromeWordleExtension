@@ -8,12 +8,20 @@
         
     </head>
     <style>
-    
+    .form-input{
+            width: 100%;
+            height: 8%;
+            background-color: lightblue;
+        }
     </style>
     <body id = "window_container" class = "window-container">
         <div id = "container" class = "container">
-            Test
-            <button id = "tester">Click</button>
+            <input type = "text" class="form-input" placeholder="IP Address" id ="ip_holder">   
+            <button id ="forward">Forward</button>
+            <button>Left</button>
+            <button>Right</button>
+            <button>Backward</button>
+            <div id="videofeed"></div>
         </div> 
     </body>
     <script src="popup_function.js"></script>
