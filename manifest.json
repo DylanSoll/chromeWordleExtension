@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Messaging Prototype",
+    "version": "0.0.1",
+    "description": "Send messages to your friends",
+    "author": "Dylan Soll",
+    "action":{
+        "default_popup": "popup.html",
+        "default_title": "Message",
+        
+    "permissions": ["storage", "scripting", "activeTab"]
+    },
+    "content_scripts": [
+      {"matches": ["*://*/*"],
+      "css": ["popup_style.css"],
+      "js": ["popup_function.js"]}
+    ]
+    
+}
