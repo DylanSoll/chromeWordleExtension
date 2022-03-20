@@ -31,19 +31,18 @@ function get_ip(){
     return ip
 }
 
+function create_button(label, path){
+    var new_path = "http://"+get_ip+"/"+path
+    var new_button = document.createElement('button')
+    new_button.innerHTML = label
+    document.getElementById('button_div').appendChild(new_button)
+    new_button.addEventListener('click', function(){
+        new_ajax_helper(new_path)
+    })
+}
 
-
-document.getElementById('forward').addEventListener('click', function(){
-    new_ajax_helper('http://'+get_ip()+'/forward')
-})
-document.getElementById('backward').addEventListener('click', function(){
-    new_ajax_helper('http://'+get_ip()+'/reverse')
-})
-document.getElementById('left').addEventListener('click', function(){
-    new_ajax_helper('http://'+get_ip()+'/left')
-})
-document.getElementById('right').addEventListener('click', function(){
-    new_ajax_helper('http://'+get_ip()+'/right')
+document.getElementById('add_button').addEventListener('click', function(){
+    create_button(document.getElementById('label').value,document.getElementById('path').value)
 })
 document.getElementById('ip_holder').addEventListener('input', function(){
 
