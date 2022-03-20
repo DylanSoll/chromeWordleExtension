@@ -14,7 +14,7 @@ color: var(--color);
 font-family: var(--font);
 
 }
-.container{
+.ext-container{
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;
@@ -35,11 +35,11 @@ font-family: var(--font);
         rgba(255, 0, 0, 1) 100%
     );
 }
-.container::-webkit-scrollbar-thumb:vertical{
+.ext-container::-webkit-scrollbar-thumb:vertical{
 border-radius: 20px 20px 20px 20px;
 background-image: linear-gradient(to bottom, rgb(52, 235, 103), rgb(52, 113, 235));
 }
-.container::-webkit-scrollbar-thumb:horizontal{
+.ext-container::-webkit-scrollbar-thumb:horizontal{
 border-radius: 20px 20px 20px 20px;
 background-image: linear-gradient(to right, rgb(52, 235, 103), rgb(52, 113, 235));
 }

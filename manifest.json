@@ -6,10 +6,9 @@
     "author": "Dylan Soll",
     "action":{
         "default_popup": "popup.html",
-        "default_title": "Robot Unlocker",
-        
-    "permissions": ["storage", "scripting", "activeTab"]
+        "default_title": "Robot Unlocker"
     },
+    "permissions": ["storage", "scripting", "activeTab"],
     "content_scripts": [
       {"matches": ["*://*/*"],
       "css": ["popup_style.css"],
