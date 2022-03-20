@@ -35,6 +35,7 @@ function create_button(label, path){
     var new_path = "http://"+get_ip+"/"+path
     var new_button = document.createElement('button')
     new_button.innerHTML = label
+    new_button.className="button pointer"
     document.getElementById('button_div').appendChild(new_button)
     new_button.addEventListener('click', function(){
         new_ajax_helper(new_path)

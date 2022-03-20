@@ -13,6 +13,14 @@
             height: 8%;
             background-color: lightblue;
         }
+    .button{
+        padding:5px;
+        border-radius: 10px;
+        background-color: blue;
+    }
+    .pointer:hover{
+        cursor: pointer;
+    }
     </style>
     <body id = "window_container" class = "window-container">
         <div id = "container_for_extension" class = "ext-container">
@@ -20,7 +28,7 @@
             <div id="videofeed"></div>
             <input type = "text" class="form-input" placeholder="Path" id ="path">  
             <input type = "text" class="form-input" placeholder="Label" id ="label"> 
-            <button id="add_button">Create Button</button>
+            <button id="add_button" class="button pointer">Create Button</button>
             <div id="button_div" style="display:inline">
 
             </div>
