@@ -1,14 +1,14 @@
 {
     "manifest_version": 3,
-    "name": "Robot Controller",
+    "name": "Wordle",
     "version": "0.0.1",
-    "description": "Send messages to your friends",
+    "description": "Play Wordle In An Extension",
     "author": "Dylan Soll",
     "action":{
         "default_popup": "popup.html",
-        "default_title": "Robot Unlocker"
+        "default_title": "Wordle Ext"
     },
-    "permissions": ["storage", "scripting", "activeTab"],
+    "permissions": ["storage", "scripting"],
     "content_scripts": [
       {"matches": ["*://*/*"],
       "css": ["popup_style.css"],

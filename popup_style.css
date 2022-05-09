@@ -1,45 +1,155 @@
 :root{
-    --background: darkblue;
-    --color: black;
-    --font: "Calibri MS", "Calibri"
+    --partial-correct: rgb(242, 255, 59);
+    --incorrect: rgb(98, 98, 98);
+    --correct: rgb(21, 123, 0);
+    --info: rgb(57, 255, 252);
+    --primary: rgb(0, 8, 115);
+    --background: rgb(255, 255, 255);
+    min-width: 400px;
+    min-height: 400px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--background);
+}
+h1{
+    font-size: 3rem;
 }
 
-    .window-container{
-width: 400px;
-height: 400px;
-max-height: 400px;
-margin: 0px;
-background-color: var(--background);
-color: var(--color);
-font-family: var(--font);
-
+.heading{
+    text-align: center;
 }
-.ext-container{
+
+/*Font size*/
+
+.font-sml {
+    font-size: small;
+}
+.font-med {
+    font-size: medium;
+}
+.font-lge {
+    font-size: large;
+}
+.font-lgr {
+    font-size: larger;
+}
+
+
+.wordle-parent{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+.wordle-square{
+    border: 3px solid black;
+    width: 70px; height: 70px;
+    margin: 1px; 
+    font-size: 3rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.ws-default{
+    background-color: var(--background);
+}
+.ws-partial{
+    background-color: var(--partial-correct);
+}
+.ws-correct{
+    background-color: var(--correct);
+}
+.ws-incorrect{
+    background-color: var(--incorrect);
+}
+.ws-active{
+    border: 3px dashed black;
+}
+
+.ws-message-box{
+    font-size: 2rem;
+    background-color: grey;
+    border-radius: 2vh;
+    border: 4px grey solid;
     position: fixed;
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 100%;
+    position: fixed;
+	top: 35%;
+    left: 50%;
+	transform: translateX(-50%);    
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.wordle-header{
+    display: inline;
+}
+
+.btn{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+.info{
+    background-color: var(--info);
+}
+.primary{
+    background-color: var(--primary);
+}
+
+.heading {
+    text-align: center;
+}
+
+
+
+.ws-stats-box{
+     background-color: blue;
+     position: fixed;
+     width: 78%;
+     height: 78%;
+     left: 10%;
+     top: 10%;
+     border-radius: 1rem;
+     border: 0.2rem solid black;
+     padding: 2%;
+}
+
+.progress-bar{
+    background-color: green;
+    position: relative;
     width: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 0, 0, 1) 0%,
-        rgba(255, 154, 0, 1) 10%,
-        rgba(208, 222, 33, 1) 20%,
-        rgba(79, 220, 74, 1) 30%,
-        rgba(63, 218, 216, 1) 40%,
-        rgba(47, 201, 226, 1) 50%,
-        rgba(28, 127, 238, 1) 60%,
-        rgba(95, 21, 242, 1) 70%,
-        rgba(186, 12, 248, 1) 80%,
-        rgba(251, 7, 217, 1) 90%,
-        rgba(255, 0, 0, 1) 100%
-    );
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
-.ext-container::-webkit-scrollbar-thumb:vertical{
-border-radius: 20px 20px 20px 20px;
-background-image: linear-gradient(to bottom, rgb(52, 235, 103), rgb(52, 113, 235));
+
+.dismiss-popup{
+    justify-self: end;
 }
-.ext-container::-webkit-scrollbar-thumb:horizontal{
-border-radius: 20px 20px 20px 20px;
-background-image: linear-gradient(to right, rgb(52, 235, 103), rgb(52, 113, 235));
+
+.header{
+    display: inline;
 }
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 16px;
+    height: 16px;
+    opacity: 0.3;
+  }
+  .close:hover {
+    opacity: 1;
+  }
+  .close:before, .close:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: rgb(37, 37, 37);
+  }
+  .close:before {
+    transform: rotate(45deg);
+  }
+  .close:after {
+    transform: rotate(-45deg);
+  }
