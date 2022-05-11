@@ -12,10 +12,9 @@
     "content_scripts": [
       {"matches": ["*://*/*"],
       "css": ["popup_style.css"],
-      "js": ["popup_function.js"]}
+      "js": ["main.js", "wordle_functions.js", "onclick_functions.js", "misc_functions.js"]}
     ],
     "icons": {
-      "16": "icons/padlock16.png"
    }
     
 }

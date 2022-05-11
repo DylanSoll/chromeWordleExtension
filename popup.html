@@ -5,45 +5,82 @@
             Wordle
         </title>
         <link rel="stylesheet" href="popup_style.css"></link>
-        
+        <script src="5l_words.js" defer></script>
+        <script src="wordle_functions.js" defer></script>
+        <script src="onclick_functions.js" defer></script>
+        <script src="misc_functions.js" defer></script>
+
+        <script src="main.js" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body id = "window_container" class = "window-container">
         <div class="wordle-header">
-            <button class="btn info" id ="open_stats">Stats</button>
-            <button class="btn info" id="start_new_game">New Game</button>
-
+            <button class="btn primary" id="start_new_game" style="font-size:1.5rem">New Game</button>
+            <button class="btn primary" id ="open_stats"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></button>
+            <button class="btn primary" id ="open_settings"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></button>
         </div>
         <div class="ws-message-box" id = "ws_message_box" hidden>Error: No Message</div>
-        <div class = "ws-stats-box" id = "ws_stats_box" hidden>
-            <div class="header">
-                <h2 class = "heading heading-lge">Statistics</h2>
-                <a href="#" class="close" id="dismiss-stats"></a>
+        <div class = "ws-dialog-box" id = "ws_dialog_box" hidden>
+            <button class="close" id="dismiss-dialog">X</button>
+            <div id ="ws_stats_box" hidden>
+                <div class="header">
+                    <h2 class = "heading heading-lge">Statistics</h2>
+                    
+                </div>
+                
+                <div>Games won: <span id = "games-won"></span></div>
+                <div>
+                    Guessed in:
+                    <div> 1: &ThickSpace; <span id="correct-in-1-stats"></span>
+                    </div>
+                    <div> 2: &ThickSpace; <span id="correct-in-2-stats"></span>
+                    </div>
+                    <div> 3: &ThickSpace; <span id="correct-in-3-stats"></span>
+                    </div>
+                    <div> 4: &ThickSpace; <span id="correct-in-4-stats"></span>
+                    </div>
+                    <div> 5: &ThickSpace; <span id="correct-in-5-stats"></span>
+                    </div>
+                    <div> 6: &ThickSpace; <span id="correct-in-6-stats"></span>
+                    </div>
+    
+                </div>
+                <button class="btn primary" id = "clear_stats">Clear Stats</button>
             </div>
-            
-            <div>Games won: <span id = "games-won"></span></div>
-            <div>
-                Guessed in:
-                <div> 1: &ThickSpace; <span id="correct-in-1-stats"></span>
+            <div id = "ws_settings_box" hidden>
+                <div class="header">
+                    <h2 class = "heading heading-lge">Settings</h2>
                 </div>
-                <div> 2: &ThickSpace; <span id="correct-in-2-stats"></span>
-                </div>
-                <div> 3: &ThickSpace; <span id="correct-in-3-stats"></span>
-                </div>
-                <div> 4: &ThickSpace; <span id="correct-in-4-stats"></span>
-                </div>
-                <div> 5: &ThickSpace; <span id="correct-in-5-stats"></span>
-                </div>
-                <div> 6 : &ThickSpace; <span id="correct-in-6-stats"></span>
-                </div>
+                <div>
+                    <div id = "ws_main_settings_cont">
+                        <button class = "btn primary" style="font-size: 1.5rem;" id = "ws_stats_settings_btn">
+                            Statistics <i class = "fa fa-cog"></i>
+                        </button>
+                        <br><br>
+                        <button class = "btn primary" style="font-size: 1.5rem;" id = "ws_colour_settings_btn">
+                            Colours <i class = "fa fa-cog"></i>
+                        </button>
+                        <br><br>
+                        <button class="btn reset" style="font-size: 1.5rem;">Reset</button>
+                    </div>
+                    
+                    <div id = "ws_stats_settings_cont" hidden>
+                        <button class = "btn primary" id ="ws_stats_back">BACK</button>
+                    </div>
 
+                    <div id = "ws_colour_settings_cont" hidden>
+                        <button class = "btn primary" id ="ws_colour_back">BACK</button>
+
+                    </div>
+                </div>
             </div>
         </div>
+        
         <div id = "container_for_extension" class = "ext-container">
             <div id ="wordle_parent" class="wordle-parent">
             </div>
 
         </div> 
     </body> 
-    <script src="5l_words.js"></script>
-    <script src="popup_function.js"></script>
+    
 </html>
