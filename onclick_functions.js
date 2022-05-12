@@ -2,6 +2,7 @@
 
 //function <buttonid>(){code}
 
+var allow_stats = true
 
 
 function open_settings(){
@@ -16,21 +17,12 @@ function open_settings(){
 
 function ws_colour_settings_btn(){
     document.getElementById('ws_main_settings_cont').setAttribute('hidden', true);
-    document.getElementById('ws_stats_settings_cont').setAttribute('hidden', true);
     document.getElementById('ws_colour_settings_cont').removeAttribute('hidden');
-    return
-}
-
-function ws_stats_settings_btn(){
-    document.getElementById('ws_main_settings_cont').setAttribute('hidden', true);
-    document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
-    document.getElementById('ws_stats_settings_cont').removeAttribute('hidden');
     return
 }
 
 function ws_stats_back(){
     document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
-    document.getElementById('ws_stats_settings_cont').setAttribute('hidden', true);
     document.getElementById('ws_main_settings_cont').removeAttribute('hidden');
     return
 }
@@ -83,8 +75,10 @@ function show_selected_btn(selected_id){
 }
 
 function reset_colour_settings(){
-    clear_colour_settings();
     convert_obj_to_style(dark_mode);
+    show_selected_btn('ws_to_dark_mode');
+    clear_colour_settings();
+    update_colours();
     return
 }
 
@@ -99,16 +93,37 @@ function save_colour_settings(){
         new_custom[target] = value;
     };
     const new_active = selected_style_id.split("ws_to_")[1]
-    const default_colour_settings = {
+    const colour_settings = {
         'active':new_active, 
         'dark_mode':dark_mode, 
         'light_mode':light_mode, 
         'custom_mode':new_custom
     };
-    console.log(new_active)
-    chrome.storage.local.get('settings', function(settings){
-        settings['colours'] = default_colour_settings;
-        chrome.storage.local.set({'settings':settings})
+    chrome.storage.local.get(['settings'], function(result){
+        result.settings.colours = colour_settings;
+        chrome.storage.local.set(result)
     })
     return
+}
+
+function toggle_switches(switch_id){
+    const switch_checkbox = document.getElementById(switch_id)
+    const switch_span = document.getElementById(`${switch_id}_span`)
+    if (switch_span.getAttribute('data-checked') === "true"){
+        switch_span.setAttribute('data-checked', false);
+        return false
+    }
+    switch_span.setAttribute('data-checked', "true");
+    return true
+}
+
+function toggle_statistics(){
+    const checked = toggle_switches('toggle_statistics')
+    chrome.storage.local.get('settings', function(result){
+        var settings = result['settings'];
+        settings['statistics']['allow_stats'] = checked;
+        chrome.storage.local.set({'settings':settings});
+        clear_stats();
+    })
+    return checked;
 }

@@ -56,8 +56,7 @@ function use_message_box(message){
 }
 
 function convert_obj_to_style(style_obj){
-    const style_tag = document.getElementById('style_for_custom_css') ;
-    console.log(style_tag)
+    const style_tag = document.getElementById('style_for_custom_css');
     const obj_keys = Object.keys(style_obj);
     var output = ":root{";
     for (var iter = 0; iter < obj_keys.length; iter++){
@@ -84,12 +83,11 @@ function ws_to_light_mode(){
 
 
 function clear_colour_settings(){
-    chrome.storage.local.get('settings', function(settings){
-        settings['colours'] = default_colour_settings;
-        chrome.storage.local.set({'settings':settings});
-    })
-    
-    return default_colour_settings
+    chrome.storage.local.get('settings', function(result){
+        result.settings['colours'] = default_colour_settings;
+        chrome.storage.local.set(result);
+    });
+    return
 }
 
 function clear_settings(){
@@ -99,5 +97,13 @@ function clear_settings(){
         }
     };
     chrome.storage.local.set(blank_settings);
-    return
+    return blank_settings
+}
+
+function update_colours(){
+    var colour_inputs = document.getElementById('custom_colour_container').getElementsByTagName('input');
+    for (var elem = 0; elem < colour_inputs.length; elem++){
+        const input = colour_inputs[elem];
+        input.value = custom[input.getAttribute('data-target')]
+    }
 }

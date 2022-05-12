@@ -65,9 +65,13 @@
                 <h3 class = "heading">Settings</h3>
                 <div>
                     <div id = "ws_main_settings_cont">
-                        <button class = "btn primary" style="font-size: 1.5rem;" id = "ws_stats_settings_btn">
-                            Statistics <i class = "fa fa-cog"></i>
-                        </button>
+                        <div style="align-self: center;">
+                            <label class="switch">
+                                <input type="checkbox" id = "toggle_statistics" value = false>
+                                <span class="slider round" id = "toggle_statistics_span" data-checked = "true"></span>
+                            </label>
+                            <label for = "toggle_statistics">Allow Statistics</label>
+                        </div>
                         <br><br>
                         <button class = "btn primary" style="font-size: 1.5rem;" id = "ws_colour_settings_btn">
                             Colours <i class = "fa fa-cog"></i>
@@ -76,14 +80,7 @@
                         <button class="btn reset" style="font-size: 1.5rem;">Reset</button>
                     </div>
                     
-                    <div id = "ws_stats_settings_cont" hidden>
-                        <button class = "btn primary" id ="ws_stats_back">
-                            <i class = "fa fa-arrow-circle-left">&ThickSpace;</i>BACK
-                        </button>
-                        
 
-
-                    </div>
 
                     <div id = "ws_colour_settings_cont" hidden>
                         <button class = "btn primary" id ="ws_colour_back">
