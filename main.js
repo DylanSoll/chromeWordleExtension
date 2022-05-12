@@ -1,8 +1,9 @@
 "use strict"
 //constant variables
 const messages = ['Hacker', 'Excellent', 'Good Guess', 'Good Guess', 'Nice', ' Phew'];
-
-chrome.storage.local.get('game',function(result){
+//clear_settings();
+chrome.storage.local.get(['game', 'settings'],(result)=>{
+    console.log(result.settings)
     create_wordle_map();
     var letter_pos = "0-0";
     if (result['game']){
@@ -26,8 +27,18 @@ chrome.storage.local.get('game',function(result){
         var can_type = true;
         var guesses = [];
     }   
-    letter_occur = reset_guesses(word);
-
+    var settings = result.settings;
+    if (!settings){
+        settings = clear_settings();
+    }
+    const colour_settings = settings['colours']; 
+    var custom = colour_settings['custom_mode']
+    console.log(`ws_to_${colour_settings['active']}`);
+    show_selected_btn(`ws_to_${colour_settings['active']}`)
+    console.log(custom)
+    convert_obj_to_style(colour_settings[colour_settings['active']])
+    var letter_occur = reset_guesses(word);
+    
     //key controls that involve wordle inputs
     document.addEventListener('keyup', function(e){
         var row = parseInt(letter_pos.split('-')[0]);
@@ -84,12 +95,12 @@ chrome.storage.local.get('game',function(result){
                 }
             }
         }else if (key == "ArrowLeft" && can_type){
-            letter_pos = update_square(letter_pos, "-")
+            letter_pos = update_square(letter_pos, "-");
         }else if (key == "ArrowRight" && can_type){
             if (active_square.innerHTML.length == 0){
-                active_square.innerHTML = "-"
+                active_square.innerHTML = "-";
             }
-            letter_pos = update_square(letter_pos, "+")
+            letter_pos = update_square(letter_pos, "+");
         }
     });
 
@@ -105,22 +116,55 @@ chrome.storage.local.get('game',function(result){
         create_wordle_map();
         document.getElementById('start_new_game').blur()
         chrome.storage.local.get(['statistics'], function(result){
-            result['statistics']['games_played'] += 1
-            chrome.storage.local.set({'statistics': result['statistics']})
-            
-        })
-        document.getElementById('start_new_game').blur()
+            result['statistics']['games_played'] += 1;
+            chrome.storage.local.set({'statistics': result['statistics']});
+        });
+        document.getElementById('start_new_game').blur();
     })
 
 
-    document.getElementById('open_stats').addEventListener('click', open_stats); //open stats box
-    document.getElementById('open_settings').addEventListener('click', open_settings);
-    document.getElementById('ws_colour_settings_btn').addEventListener('click', ws_colour_settings_btn);
-    document.getElementById('ws_stats_settings_btn').addEventListener('click', ws_stats_settings_btn);
-    document.getElementById('ws_stats_back').addEventListener('click', ws_stats_back);
-    document.getElementById('ws_colour_back').addEventListener('click', ws_colour_back);
+    
+
+
+    var colour_inputs = document.getElementById('custom_colour_container').getElementsByTagName('input');
+    for (var elem = 0; elem < colour_inputs.length; elem++){
+        const input = colour_inputs[elem];
+        input.value = custom[input.getAttribute('data-target')]
+        input.addEventListener('input', function(){
+            show_selected_btn('ws_to_custom_mode');
+            const target = input.getAttribute('data-target');
+            const value = input.value;
+            custom[target] = value;
+            convert_obj_to_style(custom);
+        });
+    }
+    document.getElementById('ws_to_custom_mode').addEventListener('click', function(){
+        show_selected_btn('ws_to_custom_mode');
+        convert_obj_to_style(custom);
+    });
+    
 });
 
-document.getElementById('clear_stats').addEventListener('click', clear_stats)
+document.getElementById('open_stats').addEventListener('click', open_stats); //open stats box
+document.getElementById('open_settings').addEventListener('click', open_settings);
+document.getElementById('ws_colour_settings_btn').addEventListener('click', ws_colour_settings_btn);
+document.getElementById('ws_stats_settings_btn').addEventListener('click', ws_stats_settings_btn);
+document.getElementById('ws_stats_back').addEventListener('click', ws_stats_back);
+document.getElementById('ws_colour_back').addEventListener('click', ws_colour_back);
 
-document.getElementById('dismiss-dialog').addEventListener('click', function(){document.getElementById('ws_dialog_box').setAttribute('hidden', true)})
+document.getElementById('clear_stats').addEventListener('click', clear_stats);
+
+document.getElementById('dismiss-dialog').addEventListener('click', 
+()=>document.getElementById('ws_dialog_box').hidden =true);
+
+document.getElementById('ws_to_light_mode').addEventListener('click', ws_to_light_mode);
+
+document.getElementById('ws_to_dark_mode').addEventListener('click', ws_to_dark_mode);
+
+document.getElementById('reset_colour_settings').addEventListener('click', reset_colour_settings)
+
+document.getElementById('save_colour_settings').addEventListener('click', save_colour_settings)
+
+
+
+

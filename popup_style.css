@@ -1,18 +1,21 @@
 :root{
-    --partial-correct: rgb(242, 255, 59);
+    --partial-correct: rgb(242, 255, 59),;
     --incorrect: rgb(98, 98, 98);
-    --correct: rgb(21, 123, 0);
+    --correct: rgb(20, 122, 0);
     --primary: rgb(33, 47, 255);
-    --primary-active: rgb(58, 71, 255);
+    --primary-active: rgba(58, 71, 255, 0.701);
     --background: rgb(222, 222, 222);
     --close: rgb(0, 0, 0);
     --close-hover: rgb(110, 110, 110);
     --success: rgb(0, 222, 15);
     --success-hover: rgb(82, 255, 94);
+    --warning: #ed5f00;
+    --border-colour: black;
     min-width: 400px;
     min-height: 400px;
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--background);
+    color: var(--text-colour);
 }
 h1{
     font-size: 3rem;
@@ -43,7 +46,7 @@ h1{
     grid-template-columns: auto auto auto auto auto;
 }
 .wordle-square{
-    border: 3px solid black;
+    border: 3px solid var(--border-colour);
     width: 70px; height: 70px;
     margin: 1px; 
     font-size: 3rem;
@@ -64,7 +67,7 @@ h1{
     background-color: var(--incorrect);
 }
 .ws-active{
-    border: 3px dashed black;
+    border: 3px dashed var(--border-colour);
 }
 
 .ws-message-box{
@@ -87,6 +90,7 @@ h1{
 }
 
 .btn{
+    color: var(--text-colour);
     padding: 0.5rem;
     border-radius: 0.5rem;
     border: none;
@@ -96,7 +100,9 @@ h1{
     cursor: pointer;
     background-color: var(--primary-active);
 }
-
+.btn-selected{
+    border: 2px solid var(--border-colour);
+}
 
 
 .heading {
@@ -123,18 +129,12 @@ h1{
      left: 10%;
      top: 10%;
      border-radius: 1rem;
-     border: 0.2rem solid black;
+     border: 0.2rem solid var(--border-colour);
      padding: 2%;
      font-size: 1.5rem;
 }
 
-.progress-bar{
-    background-color: green;
-    position: relative;
-    width: 100%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-}
+
 
 .dismiss-popup{
     justify-self: end;
@@ -159,3 +159,41 @@ h1{
     cursor: pointer;
     color: var(--close-hover);
   }
+
+.custom-colour-container{
+    overflow-y: auto;
+    position: absolute;
+    height: 45%;
+    width: 90%;
+    margin: 3%; 
+}
+
+.custom-colour-container::-webkit-scrollbar{
+    background-color: var(--background);
+}
+.custom-colour-container::-webkit-scrollbar-thumb{
+    background-color: var(--primary);
+    border-radius: 2vw;
+    width: 1vw;
+}
+
+
+.save-reset-bar{
+    display: inline;
+    position: fixed;
+    bottom: 16vh;
+}
+.save-reset-bar>.save{
+    right: 15vw;
+    position: fixed;
+    background-color: var(--success);
+}
+.save-reset-bar>.reset{
+    left: 15vw;
+    position: fixed;
+    background-color: var(--warning);
+}
+.colour-picker{
+    border: 0px solid var(--background);
+    padding: none;
+}

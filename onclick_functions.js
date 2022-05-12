@@ -71,3 +71,44 @@ function clear_stats(){
     chrome.storage.local.set({'statistics': statistics});
     return
 }
+
+
+function show_selected_btn(selected_id){
+    const currently_active = document.getElementsByClassName('btn-selected')[0];
+    if (currently_active != null){
+        currently_active.className = currently_active.className.split('btn-selected')[0];
+    }
+    document.getElementById(selected_id).className += ' btn-selected';
+    return
+}
+
+function reset_colour_settings(){
+    clear_colour_settings();
+    convert_obj_to_style(dark_mode);
+    return
+}
+
+function save_colour_settings(){
+    var selected_style_id = document.getElementById('ws_style_toggle').getElementsByClassName('btn primary btn-selected')[0].id;
+    var colour_inputs = document.getElementById('custom_colour_container').getElementsByTagName('input');
+    var new_custom = {};
+    for (var elem = 0; elem < colour_inputs.length; elem++){
+        const input = colour_inputs[elem];
+        const target = input.getAttribute('data-target');
+        const value = input.value;
+        new_custom[target] = value;
+    };
+    const new_active = selected_style_id.split("ws_to_")[1]
+    const default_colour_settings = {
+        'active':new_active, 
+        'dark_mode':dark_mode, 
+        'light_mode':light_mode, 
+        'custom_mode':new_custom
+    };
+    console.log(new_active)
+    chrome.storage.local.get('settings', function(settings){
+        settings['colours'] = default_colour_settings;
+        chrome.storage.local.set({'settings':settings})
+    })
+    return
+}

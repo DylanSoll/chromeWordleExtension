@@ -14,6 +14,20 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body id = "window_container" class = "window-container">
+        <style id = "style_for_custom_css">
+            :root{
+                --partial-correct: rgb(181, 159, 59), #b59f3b;
+                --incorrect: rgb(98, 98, 98), #626262;
+                --correct: rgb(21, 123, 0), #157b00;
+                --primary: rgb(0, 13, 195), #000dc3;
+                --background: rgb(5, 0, 21), #050015;
+                --close: rgb(255, 255, 255),#ffffff;
+                --success: rgb(0, 222, 15), #00de0f;
+                --warning: rgb(237, 95, 0), #ed5f00;
+                --border-colour: rgb(255, 255, 255), #ffffff;
+                color:rgb(255, 255, 255), #ffffff;
+            }
+        </style>
         <div class="wordle-header">
             <button class="btn primary" id="start_new_game" style="font-size:1.5rem">New Game</button>
             <button class="btn primary" id ="open_stats"><i class="fa fa-trophy fa-2x" aria-hidden="true"></i></button>
@@ -48,9 +62,7 @@
                 <button class="btn primary" id = "clear_stats">Clear Stats</button>
             </div>
             <div id = "ws_settings_box" hidden>
-                <div class="header">
-                    <h2 class = "heading heading-lge">Settings</h2>
-                </div>
+                <h3 class = "heading">Settings</h3>
                 <div>
                     <div id = "ws_main_settings_cont">
                         <button class = "btn primary" style="font-size: 1.5rem;" id = "ws_stats_settings_btn">
@@ -65,11 +77,49 @@
                     </div>
                     
                     <div id = "ws_stats_settings_cont" hidden>
-                        <button class = "btn primary" id ="ws_stats_back">BACK</button>
+                        <button class = "btn primary" id ="ws_stats_back">
+                            <i class = "fa fa-arrow-circle-left">&ThickSpace;</i>BACK
+                        </button>
+                        
+
+
                     </div>
 
                     <div id = "ws_colour_settings_cont" hidden>
-                        <button class = "btn primary" id ="ws_colour_back">BACK</button>
+                        <button class = "btn primary" id ="ws_colour_back">
+                            <i class = "fa fa-arrow-circle-left">&ThickSpace;</i>BACK
+                        </button>
+                        <br>
+                        <div style="display:inline;" id = "ws_style_toggle">
+                            <button class = "btn primary" id ="ws_to_light_mode">Light Mode</button>
+                            <button class = "btn primary" id ="ws_to_dark_mode">Dark Mode</button>
+                            <button class = "btn primary" id ="ws_to_custom_mode">Custom</button>
+                        </div>
+                        <div class = "custom-colour-container" id = "custom_colour_container">
+                            <div>
+                                <input type="color" class="colour-picker" data-target = "--incorrect"> Incorrect<br>
+                                <input type="color" class="colour-picker" data-target = "--partial-correct"> Partially Correct<br>
+                                <input type="color" class="colour-picker" data-target = "--correct"> Correct<br>
+                            </div>
+                            <br>
+
+                            <div>
+                                <input type="color" class="colour-picker" data-target = "--background"> Background<br>
+                                <input type="color" class="colour-picker" data-target = "--border-colour"> Borders<br>
+                                <input type="color" class="colour-picker" data-target = "--text-colour"> Text Colour<br>
+
+                            </div>
+                            <br>
+                            <div>
+                                <input type="color" class="colour-picker" data-target = "--primary"> Primary Colour<br>
+                                <input type="color" class="colour-picker" data-target = "--success"> Save Button<br>
+                                <input type="color" class="colour-picker" data-target = "--warning"> Reset Button<br>
+                            </div>
+                        </div>
+                        <div class="save-reset-bar">
+                            <button class = "btn reset" id = "reset_colour_settings">Reset</button>
+                            <button class = "btn save" id = "save_colour_settings">Save</button>
+                        </div>
 
                     </div>
                 </div>

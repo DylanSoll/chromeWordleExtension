@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Wordle",
-    "version": "0.0.1",
+    "version": "0.2.0",
     "description": "Play Wordle In An Extension",
     "author": "Dylan Soll",
     "action":{
@@ -12,7 +12,7 @@
     "content_scripts": [
       {"matches": ["*://*/*"],
       "css": ["popup_style.css"],
-      "js": ["main.js", "wordle_functions.js", "onclick_functions.js", "misc_functions.js"]}
+      "js": ["main.js", "5l_words.js","wordle_functions.js", "onclick_functions.js", "misc_functions.js"]}
     ],
     "icons": {
    }
