@@ -15,7 +15,7 @@ const light_mode = {
 }
 
 const dark_mode = {
-    '--partial-correct': '#b59f3b',
+    '--partial-correct': '#eda60c',
     '--incorrect': '#626262',
     '--correct': '#157b00',
     '--primary': '#000dc3',
@@ -28,7 +28,7 @@ const dark_mode = {
 }
 
 const custom_style = {
-    '--partial-correct': '#b59f3b',
+    '--partial-correct': '#eda60c',
     '--incorrect': '#626262',
     '--correct': '#157b00',
     '--primary': '#000dc3',
@@ -104,6 +104,6 @@ function update_colours(){
     var colour_inputs = document.getElementById('custom_colour_container').getElementsByTagName('input');
     for (var elem = 0; elem < colour_inputs.length; elem++){
         const input = colour_inputs[elem];
-        input.value = custom[input.getAttribute('data-target')]
+        input.value = custom_style[input.getAttribute('data-target')]
     }
 }

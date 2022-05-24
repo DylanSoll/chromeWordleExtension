@@ -127,3 +127,8 @@ function toggle_statistics(){
     })
     return checked;
 }
+
+function full_reset(){
+    console.log('ha');
+    
+}

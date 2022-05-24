@@ -169,13 +169,13 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
     });
     
 });
-
+document.getElementById('full_reset').addEventListener('input', full_reset)
 document.getElementById('open_stats').addEventListener('click', open_stats); //open stats box
 document.getElementById('open_settings').addEventListener('click', open_settings);
-document.getElementById('ws_colour_settings_btn').addEventListener('click', ws_colour_settings_btn);
-document.getElementById('ws_colour_back').addEventListener('click', ws_colour_back);
 
-document.getElementById('clear_stats').addEventListener('click', clear_stats);
+document.getElementById('clear_stats').addEventListener('click', function(){
+    console.log('hit')
+});
 
 document.getElementById('dismiss-dialog').addEventListener('click', 
 ()=>document.getElementById('ws_dialog_box').hidden =true);
@@ -189,3 +189,4 @@ document.getElementById('reset_colour_settings').addEventListener('click', reset
 document.getElementById('save_colour_settings').addEventListener('click', save_colour_settings)
 
 document.getElementById('toggle_statistics').addEventListener('input', toggle_statistics)
+
