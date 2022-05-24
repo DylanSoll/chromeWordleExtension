@@ -1,4 +1,5 @@
 "use strict"
+
 //constant variables
 const messages = ['Hacker', 'Excellent', 'Good Guess', 'Good Guess', 'Nice', ' Phew'];
 chrome.storage.local.get(['game', 'settings'],(result)=>{
@@ -10,11 +11,12 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
         var word = game['word'];
         var can_type = game['can_type'];
         var guesses = game['guesses'];
+
         for (var iter = 0; iter < guesses.length; iter++){
             for (var letter = 0; letter < 5; letter++){
                 document.getElementById(`ws-${iter}-${letter}`).innerHTML = guesses[iter][letter];
-            }
-            check_word(word, iter);
+            };
+            check_word(word, iter, false);
             letter_pos = update_row(letter_pos);
         }
     }else{
@@ -128,7 +130,7 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
     });
 
 
-    document.getElementById('start_new_game').addEventListener('click', function(){
+    document.getElementById('start_new_game').addEventListener('click', ()=>{
         word = random_word()
         document.getElementById('ws_dialog_box').setAttribute('hidden', true);
         chrome.storage.local.set({'game':{'word': word, 
@@ -146,10 +148,6 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
         }
         document.getElementById('start_new_game').blur();
     })
-
-
-    
-
 
     var colour_inputs = document.getElementById('custom_colour_container').getElementsByTagName('input');
     for (var elem = 0; elem < colour_inputs.length; elem++){
@@ -169,13 +167,11 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
     });
     
 });
-document.getElementById('full_reset').addEventListener('input', full_reset)
+document.getElementById('full_reset').addEventListener('click', full_reset)
 document.getElementById('open_stats').addEventListener('click', open_stats); //open stats box
 document.getElementById('open_settings').addEventListener('click', open_settings);
 
-document.getElementById('clear_stats').addEventListener('click', function(){
-    console.log('hit')
-});
+document.getElementById('clear_stats').addEventListener('click', clear_stats);
 
 document.getElementById('dismiss-dialog').addEventListener('click', 
 ()=>document.getElementById('ws_dialog_box').hidden =true);
@@ -184,9 +180,14 @@ document.getElementById('ws_to_light_mode').addEventListener('click', ws_to_ligh
 
 document.getElementById('ws_to_dark_mode').addEventListener('click', ws_to_dark_mode);
 
-document.getElementById('reset_colour_settings').addEventListener('click', reset_colour_settings)
+document.getElementById('reset_colour_settings').addEventListener('click', reset_colour_settings);
 
-document.getElementById('save_colour_settings').addEventListener('click', save_colour_settings)
+document.getElementById('save_colour_settings').addEventListener('click', save_colour_settings);
 
-document.getElementById('toggle_statistics').addEventListener('input', toggle_statistics)
+document.getElementById('toggle_statistics').addEventListener('input', toggle_statistics);
 
+document.getElementById('open_colour_settings').addEventListener('click', open_colour_settings);
+
+document.getElementById('open_animations_settings').addEventListener('click', open_animations_settings);
+
+document.getElementById('back_to_main_settings').addEventListener('click', back_to_main_settings)

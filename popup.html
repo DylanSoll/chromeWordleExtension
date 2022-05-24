@@ -37,11 +37,10 @@
         <div class = "ws-dialog-box" id = "ws_dialog_box" hidden>
             <button class="close" id="dismiss-dialog">X</button>
             <div id ="ws_stats_box" hidden>
-                <div class="header">
+                <div class="stats-header">
                     <h2 class = "heading heading-lge">Statistics</h2>
-                    
                 </div>
-                
+                <div style="margin-bottom: 20%;"></div>
                 <div>Games won: <span id = "games-won"></span></div>
                 <div>
                     Guessed in:
@@ -62,7 +61,14 @@
                 <button class="btn primary" id = "clear_stats">Clear Stats</button>
             </div>
             <div id = "ws_settings_box" hidden>
-                <h3 class = "heading">Settings</h3>
+                <div class = "stats-header"style="left: 5%; top: 4%">
+                    <button class = "btn primary" id = "back_to_main_settings" hidden>
+                        <i class = "fa fa-arrow-circle-left"></i> BACK
+                    </button>
+                </div>
+                    <h2 class = "stats-header"style="left: 30%; top: -4%">Settings</h2>
+                </div>
+                <div style="margin-bottom: 20%;"></div>
                 <div id = "ws_main_settings_cont">
                     <div style="align-self: center;">
                         <label class="switch">
@@ -71,6 +77,21 @@
                         </label>
                         <label for = "toggle_statistics">Allow Statistics</label>
                     </div>
+                    <button id = "open_colour_settings" class = "btn primary" 
+                    style = "font-size: 1.5rem; margin-top: 2vh;">
+                        Colour <i class = "fa fa-cogs"></i>
+                    </button>
+                    <button id = "open_animations_settings" class = "btn primary" 
+                    style = "font-size: 1.5rem; margin-top: 2vh;">
+                        Animations <i class = "fa fa-cogs"></i>
+                    </button>
+                    
+                    <div class="save-reset-bar">
+                        <button class = "btn reset" id = "full_reset">Full Reset</button>
+                    </div>
+
+                </div>
+                <div id = "ws_colour_settings_cont" hidden>
                     <div style="display:inline;" id = "ws_style_toggle">
                         <button class = "btn primary" id ="ws_to_light_mode">Light Mode</button>
                         <button class = "btn primary" id ="ws_to_dark_mode">Dark Mode</button>
@@ -96,15 +117,13 @@
                             <input type="color" class="colour-picker" data-target = "--success"> Save Button<br>
                             <input type="color" class="colour-picker" data-target = "--warning"> Reset Button<br>
                         </div>
-                        
-                        
                     </div>
-                    <br><br><br><br><br><br><br>
                     <div class="save-reset-bar">
                         <button class = "btn reset" id = "reset_colour_settings">Reset <i class = "fa fa-cog"></i></button>
-                        <button class = "btn primary" id = "full_reset">Full Reset</button>
                         <button class = "btn save" id = "save_colour_settings">Save</button>
                     </div>
+                </div>
+                <div id = "ws_animations_settings_cont" hidden>
 
                 </div>
             </div>

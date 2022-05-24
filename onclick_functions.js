@@ -107,7 +107,6 @@ function save_colour_settings(){
 }
 
 function toggle_switches(switch_id){
-    const switch_checkbox = document.getElementById(switch_id)
     const switch_span = document.getElementById(`${switch_id}_span`)
     if (switch_span.getAttribute('data-checked') === "true"){
         switch_span.setAttribute('data-checked', false);
@@ -129,6 +128,31 @@ function toggle_statistics(){
 }
 
 function full_reset(){
-    console.log('ha');
-    
+    chrome.storage.local.clear()
+    window.close()
+    return
+}
+
+function open_colour_settings(){
+    const container = document.getElementById('ws_colour_settings_cont');
+    container.removeAttribute('hidden');
+    document.getElementById('ws_main_settings_cont').setAttribute('hidden', true);
+    document.getElementById('back_to_main_settings').removeAttribute('hidden');
+    return
+}
+
+function open_animations_settings(){
+    const container = document.getElementById('ws_animations_settings_cont');
+    container.removeAttribute('hidden');
+    document.getElementById('ws_main_settings_cont').setAttribute('hidden', true);
+    document.getElementById('back_to_main_settings').removeAttribute('hidden');
+    return
+}
+
+function back_to_main_settings(){
+    document.getElementById('back_to_main_settings').setAttribute('hidden', true);
+    document.getElementById('ws_animations_settings_cont').setAttribute('hidden', true);
+    document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
+    document.getElementById('ws_main_settings_cont').removeAttribute('hidden');    
+    return
 }

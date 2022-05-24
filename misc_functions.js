@@ -1,6 +1,5 @@
 "use strict"
 
-
 const light_mode = {
     '--partial-correct': 'rgb(242, 255, 59)',
     '--incorrect': 'rgb(98, 98, 98)',
@@ -47,11 +46,20 @@ const default_colour_settings = {
     'custom_mode':custom_style
 }
 
+function setTimeoutXTimes(func, delay, times){
+    for (let i = 1; i <= times; i++){
+        setTimeout(func, delay * i)
+    }
+    return
+}
+
 function use_message_box(message){
     const message_box = document.getElementById('ws_message_box');
     message_box.removeAttribute('hidden');
+    message_box.className = 'ws-message-box now-visible'
     message_box.innerHTML = message;
-    window.setTimeout(function(){message_box.setAttribute('hidden', true)}, 5000);
+    window.setTimeout(function(){message_box.className = 'ws-message-box now-invisible'}, 4000);
+    window.setTimeout(function(){message_box.setAttribute('hidden', true)}, 4300);
     return
 }
 

@@ -1,10 +1,65 @@
 :root{
     min-width: 400px;
     min-height: 400px;
+    border: 1px solid white;
+    resize: both;
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--background);
     color: var(--text-colour);
+    
 }
+@keyframes invalid-word{
+    0%{
+        transform: translateX(0%);
+    }
+    33%{
+        transform: translate(25%);
+    }
+    66%{
+        transform: translate(-25%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes rotate-letter-correct{
+    99%{
+        transform: rotateY(360deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+        background-color: var(--correct);
+    }
+}
+
+@keyframes rotate-letter-partial{
+    99%{
+        transform: rotateY(360deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+        background-color: var(--partial-correct);
+    }
+}
+
+@keyframes rotate-letter-incorrect{
+    99%{
+        transform: rotateY(360deg);
+    }
+    100%{
+        transform: rotateY(0deg);
+        background-color: var(--incorrect);
+    }
+}
+
+@keyframes make-visible{
+    100%{opacity: 100%;}
+}
+@keyframes make-invisible{
+    100%{opacity: 0%;}
+}
+
 h1{
     font-size: 3rem;
 }
@@ -42,6 +97,63 @@ h1{
     justify-content: center;
     align-items: center;
 }
+
+.rotate-letter-correct, .rotate-letter-partial, .rotate-letter-incorrect{
+    animation-duration: 400ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.delay-0{
+    animation-delay: 0ms;
+}
+.delay-1{
+    animation-delay: 400ms;
+}
+.delay-2{
+    animation-delay: 800ms;
+}
+.delay-3{
+    animation-delay: 1200ms;
+}
+.delay-4{
+    animation-delay: 1600ms;
+}
+
+
+.rotate-letter-correct{
+    animation-name: rotate-letter-correct;
+}
+.rotate-letter-partial{
+    animation-name: rotate-letter-partial;
+}
+.rotate-letter-incorrect{
+    animation-name: rotate-letter-incorrect;
+}
+
+.invalid-word{
+    animation-name: invalid-word;
+    animation-duration: 200ms;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 2;
+}
+.now-visible{
+    animation-name: make-visible;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+.now-invisible{
+    animation-name: make-invisible;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+.ws-default, .ws-partial, .ws-correct, .ws-incorrect, .ws-active{
+    z-index: 5;
+}
 .ws-default{
     background-color: var(--background);
 }
@@ -70,11 +182,11 @@ h1{
 	transform: translateX(-50%);    
     padding-left: 10px;
     padding-right: 10px;
+    z-index: 999;
 }
 
 
 .wordle-header>button{
-    display: inline;
     margin-bottom: 0.5rem;
 }
 
@@ -89,7 +201,6 @@ h1{
 .btn:hover{
     cursor: pointer;
     opacity: 0.85;
-    background-color: var(--primary-active);
 }
 .btn-selected{
     border: 2px solid var(--border-colour);
@@ -98,6 +209,7 @@ h1{
 
 .heading {
     text-align: center;
+    display: inline;
 }
 .success{
     background-color: var(--success);
@@ -117,6 +229,7 @@ h1{
      border: 0.2rem solid var(--border-colour);
      padding: 2%;
      font-size: 1.5rem;
+     z-index: 10;
 }
 
 
@@ -125,10 +238,19 @@ h1{
     justify-self: end;
 }
 
-.header{
+.stats-header{
     display: inline;
-}
+    position: absolute;
+    text-align: center;
+    left: 25%;
+    top: 3%;
 
+}
+.settings-cont{
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
+}
 .close {
     position: absolute;
     right: 10%;
@@ -147,7 +269,7 @@ h1{
 .custom-colour-container{
     overflow-y: auto;
     position: absolute;
-    height: 40%;
+    height: 50%;
     width: 90%;
     margin: 3%; 
 }
@@ -163,20 +285,22 @@ h1{
 
 
 .save-reset-bar{
+    bottom: 10%;
+    position: fixed;
     display: inline;
 }
 .save-reset-bar>.save{
-    position: relative;
+    position: fixed;
     background-color: var(--success);
-    margin-left: 7%;
-    font-size: 1rem;
+    right: 13%;
+    bottom: 12%;
 }
 .save-reset-bar>.reset{
-    position: relative;
+    position: fixed;
     background-color: var(--warning);
-    margin-right: 7%;
-    margin-left: 1%;
     font-size: 1rem;
+    left: 15%;
+    bottom: 12%;
 }
 
 .save-reset-bar>.primary{
@@ -188,8 +312,8 @@ h1{
 }
 
 .colour-picker{
-    border: 0px solid var(--background);
-    padding: none;
+    background-color: var(--background);
+
 }
 
 
