@@ -1,12 +1,8 @@
 :root{
-    min-width: 400px;
-    min-height: 400px;
-    border: 1px solid white;
-    resize: both;
+    min-width: fit-content;
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--background);
     color: var(--text-colour);
-    
 }
 @keyframes invalid-word{
     0%{
@@ -25,7 +21,8 @@
 
 @keyframes rotate-letter-correct{
     99%{
-        transform: rotateY(360deg);
+        
+        transform: rotate3d(0,1,0,180deg);
     }
     100%{
         transform: rotateY(0deg);
@@ -35,7 +32,7 @@
 
 @keyframes rotate-letter-partial{
     99%{
-        transform: rotateY(360deg);
+        transform: rotate3d(0,1,0,180deg);
     }
     100%{
         transform: rotateY(0deg);
@@ -45,14 +42,21 @@
 
 @keyframes rotate-letter-incorrect{
     99%{
-        transform: rotateY(360deg);
+        transform: rotate3d(0,1,0,180deg);
     }
     100%{
         transform: rotateY(0deg);
         background-color: var(--incorrect);
     }
 }
-
+@keyframes rotate-letter-against {
+    99%{
+        transform: rotate3d(0,1,0,-180deg);
+    }
+    100%{
+        transform: rotate3d(0,1,0,0deg);
+    }
+}
 @keyframes make-visible{
     100%{opacity: 100%;}
 }
@@ -99,26 +103,32 @@ h1{
 }
 
 .rotate-letter-correct, .rotate-letter-partial, .rotate-letter-incorrect{
-    animation-duration: 400ms;
-    animation-timing-function: ease-in-out;
+    animation-duration: 250ms;
+    animation-timing-function: linear;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+}
+.rotate-letter-correct>div, .rotate-letter-partial>div, .rotate-letter-incorrect>div{
+    animation-name: rotate-letter-against;
+    animation-duration: 250ms;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
 }
 
 .delay-0{
     animation-delay: 0ms;
 }
 .delay-1{
-    animation-delay: 400ms;
+    animation-delay: 250ms;
 }
 .delay-2{
-    animation-delay: 800ms;
+    animation-delay: 500ms;
 }
 .delay-3{
-    animation-delay: 1200ms;
+    animation-delay: 750ms;
 }
 .delay-4{
-    animation-delay: 1600ms;
+    animation-delay: 1000ms;
 }
 
 
@@ -373,3 +383,35 @@ h1{
     border-radius: 50%;
   }
 
+.progress-bar{
+    position: relative;
+    height: .75em;
+    background:linear-gradient(
+        90deg,
+        #bc6060 10.2857142857%,
+        #ff6600 22.5714285714%,
+        #dcce00 42.8571428571%,
+        #46be00 57.1428571429%,
+        #0d00ff 71.4285714286%,
+        indigo 85.7142857143%,
+        violet 110%
+        );
+    border-radius: .375em;
+    margin-top: 0.3em;
+    background-size: 200% 200%;
+    animation-name: moving-stripes;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    
+}
+.progress-bar:hover{
+    animation-direction: reverse;
+}
+@keyframes moving-stripes {
+
+    100%{
+        background-position: 200%
+    }
+}

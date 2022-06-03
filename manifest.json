@@ -1,14 +1,14 @@
 {
     "manifest_version": 3,
     "name": "Wordle Extension",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "Play Wordle In An Extension",
     "author": "Dylan Soll",
     "action":{
         "default_popup": "popup.html",
         "default_title": "Wordle Extension"
     },
-    "permissions": ["storage", "scripting"],
+    "permissions": ["storage"],
     "content_scripts": [
       {"matches": ["*://*/*"],
       "css": ["popup_style.css"],

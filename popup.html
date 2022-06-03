@@ -26,6 +26,7 @@
                 --warning: rgb(237, 95, 0), #ed5f00;
                 --border-colour: rgb(255, 255, 255), #ffffff;
                 color:rgb(255, 255, 255), #ffffff;
+                
             }
         </style>
         <div class="wordle-header">
@@ -43,20 +44,32 @@
                 <div style="margin-bottom: 20%;"></div>
                 <div>Games won: <span id = "games-won"></span></div>
                 <div>
-                    Guessed in:
-                    <div> 1: &ThickSpace; <span id="correct-in-1-stats"></span>
+                    Guessed in:<br>
+                    <div style="display: grid; grid-template-columns: 25% 75%;">
+                        <div> 1: &ThickSpace; <span id="correct-in-1-stats"></span> </div>
+                        <div class = "progress-bar" id="correct-in-1-stats-progress-bar"></div>
                     </div>
-                    <div> 2: &ThickSpace; <span id="correct-in-2-stats"></span>
+                    <div style="display: grid; grid-template-columns: 25% 75%;">
+                        <div> 2: &ThickSpace; <span id="correct-in-2-stats"></span> </div>
+                        <div class = "progress-bar" id="correct-in-2-stats-progress-bar"></div>
                     </div>
-                    <div> 3: &ThickSpace; <span id="correct-in-3-stats"></span>
+                    <div style="display: grid; grid-template-columns: 25% 75%;">
+                        <div> 3: &ThickSpace; <span id="correct-in-3-stats"></span> </div>
+                        <div class = "progress-bar" id="correct-in-3-stats-progress-bar"></div>
                     </div>
-                    <div> 4: &ThickSpace; <span id="correct-in-4-stats"></span>
+                    <div style="display: grid; grid-template-columns: 25% 75%;">
+                        <div> 4: &ThickSpace; <span id="correct-in-4-stats"></span> </div>
+                        <div class = "progress-bar" id="correct-in-4-stats-progress-bar"></div>
                     </div>
-                    <div> 5: &ThickSpace; <span id="correct-in-5-stats"></span>
+                    <div style="display: grid; grid-template-columns: 25% 75%;">
+                        <div> 5: &ThickSpace; <span id="correct-in-5-stats"></span> </div>
+                        <div class = "progress-bar" id="correct-in-5-stats-progress-bar"></div>
                     </div>
-                    <div> 6: &ThickSpace; <span id="correct-in-6-stats"></span>
+                    <div style="display: grid; grid-template-columns: 25% 75%;">
+                        <div> 6: &ThickSpace; <span id="correct-in-6-stats"></span> </div>
+                        <div class = "progress-bar" id="correct-in-6-stats-progress-bar"></div>
                     </div>
-    
+                    
                 </div>
                 <button class="btn primary" id = "clear_stats">Clear Stats</button>
             </div>
