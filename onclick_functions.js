@@ -7,6 +7,8 @@ var allow_stats = true
 
 function open_settings(){
     chrome.storage.local.get(['settings'], function(){
+        document.getElementById('ws_main_settings_cont').removeAttribute('hidden');
+        document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
         document.getElementById('ws_settings_box').removeAttribute('hidden');
         document.getElementById('ws_dialog_box').removeAttribute('hidden');
         document.getElementById('ws_stats_box').setAttribute('hidden', true);
@@ -37,15 +39,30 @@ function ws_colour_back(){
 
 function open_stats(){
     chrome.storage.local.get(['statistics'], function(result){
+        document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
         document.getElementById('ws_stats_box').removeAttribute('hidden')
         document.getElementById('ws_dialog_box').removeAttribute('hidden')
+        document.getElementById('ws_main_settings_cont').setAttribute('hidden', true)
         document.getElementById('ws_settings_box').setAttribute('hidden', true)
 
         const stats = result['statistics']
         var total_won = 0;
+        let largest_won = 0
         for (var pos = 1; pos < 7; pos++){
-            document.getElementById('correct-in-'+pos+'-stats').innerHTML = stats['distribution'][pos]
-            total_won += parseInt(stats['distribution'][pos])
+            let number_won = stats.distribution[pos]
+            document.getElementById('correct-in-'+pos+'-stats').innerHTML = number_won
+
+            total_won += parseInt(number_won)
+
+            if (number_won > largest_won){
+                largest_won = number_won
+            }
+        }
+        for (var pos = 1; pos < 7; pos++){
+            let number_won = stats.distribution[pos]
+            let percent_won = 100 * number_won / largest_won
+            console.log(percent_won)
+            document.getElementById('correct-in-'+pos+'-stats-progress-bar').style = `width: ${percent_won}%`
         }
         document.getElementById('games-won').innerHTML =  total_won + "/" + String(stats['games_played'])
     });
@@ -58,6 +75,7 @@ function clear_stats(){
         {'failed': 0, '1':0, '2':0, '3':0, '4':0, '5':0, '6':0}};
     for (var pos = 1; pos < 7; pos++){
         document.getElementById('correct-in-'+pos+'-stats').innerHTML = 0
+        document.getElementById('correct-in-'+pos+'-stats-progress-bar').style = "width: 0%"
     }
     document.getElementById('games-won').innerHTML =  0 + "/" + String(1);
     chrome.storage.local.set({'statistics': statistics});

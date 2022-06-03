@@ -1,7 +1,7 @@
 "use strict"
 
 //constant variables
-const messages = ['Hacker', 'Excellent', 'Good Guess', 'Good Guess', 'Nice', ' Phew'];
+const messages = ['Hacker', 'Excellent', 'Good Guess', 'Good Guess', 'Nice', 'Phew'];
 chrome.storage.local.get(['game', 'settings'],(result)=>{
     //runs on launch
     create_wordle_map();
@@ -75,8 +75,7 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
             if (!valid_guess) return;
             const correct = check_word(word, row);
             if (correct){
-                var message = messages[row];
-                use_message_box(message);
+                use_message_box(messages[row]);
                 can_type = false;
                 if (allow_stats){
                     chrome.storage.local.get(['statistics'], function(result){
@@ -94,9 +93,10 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
                 }else{
                     use_message_box(word);
                 }
+                row +=1;
             }
 
-            row +=1;
+            
             guesses.push(guess.toUpperCase());
             chrome.storage.local.set({'game':{'word':word, 'guesses': guesses, 'can_type': can_type}});
 

@@ -75,9 +75,9 @@ function validate_guess(row){
             const square = guess_elements[square_pos];
             square.className += ' invalid-word'
             if (square_pos == 4){
-                setTimeout(()=>{square.className = "wordle-square ws-active"}, 400)
+                setTimeout(()=>{square.className = "wordle-square ws-active"}, 250)
             }else{
-                setTimeout(()=>{square.className = "wordle-square ws-default"}, 400)
+                setTimeout(()=>{square.className = "wordle-square ws-default"}, 250)
             }
         }
     }
@@ -124,8 +124,8 @@ function check_word(word, row, live = true){
         }
         
     }
-    if (word_guess == word){
-        correct = true;
+
+    if (word_guess === word){
         for (var col = 0; col <= 4; col++){
             const square = document.getElementById("ws-"+String(row)+"-"+String(col));
             square.className = "wordle-square ws-correct"; 
@@ -134,12 +134,14 @@ function check_word(word, row, live = true){
                 square.className = `wordle-square rotate-letter-correct delay-${col}`;
             }
         }
+        return true
 
 
     }else{
         for (var col = 0; col <=4; col++){
             const square = document.getElementById("ws-"+String(row)+"-"+String(col))
             var letter = square.innerHTML
+            square.innerHTML = `<div class = "delay-${col}">${letter}</div>`
             if (positionalGuess.includes(col)){
                 square.className = "wordle-square ws-correct"; 
                 if (live){
@@ -148,7 +150,7 @@ function check_word(word, row, live = true){
             }
             else if (word.includes(letter)){
                 if (letter_occur[letter] > 0 ){
-                    if (word[col] != letter){
+                    if (word[col] !== letter){
                         square.className =  "wordle-square ws-partial"
                         if (live){
                             square.className = `wordle-square rotate-letter-partial delay-${col}`;
@@ -169,6 +171,6 @@ function check_word(word, row, live = true){
                 }
             }
         }
+        return false
     }
-    return correct
 }
