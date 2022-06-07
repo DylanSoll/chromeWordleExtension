@@ -79,7 +79,7 @@ chrome.storage.local.get(['game', 'settings'],(result)=>{
                 can_type = false;
                 if (allow_stats){
                     chrome.storage.local.get(['statistics'], function(result){
-                        result['statistics']['distribution'][row] += 1;
+                        result['statistics']['distribution'][row + 1] += 1;
                         chrome.storage.local.set({'statistics': result['statistics']});
                     });
                 }

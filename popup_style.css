@@ -403,11 +403,12 @@ h1{
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    animation-direction: reverse;
 
     
 }
 .progress-bar:hover{
-    animation-direction: reverse;
+    animation-direction:normal;
 }
 @keyframes moving-stripes {
 
