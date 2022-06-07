@@ -145,6 +145,83 @@
         <div id = "container_for_extension" class = "ext-container">
             <div id ="wordle_parent" class="wordle-parent">
             </div>
+            <style>
+                .hidden-square{
+                    transform: rotateY(90deg) translateX(100%);
+                }
+                .whole-container-letter{
+                    position: absolute;
+                }
+                .col-0{
+                    margin-left: 0;
+                }
+                .col-1{
+                    margin-left: 78px;
+                }
+                .col-2{
+                    margin-left: calc(2*78px);
+                }
+                .col-3{
+                    margin-left: calc(3*78px);
+                }
+                .col-4{
+                    margin-left: calc(4*78px);
+                }
+                .row-0{
+                    margin-top: calc(0*78px);
+                }
+                .row-1{
+                    margin-top: calc(1*78px);
+                }
+                .row-2{
+                    margin-top: calc(2*78px);
+                }
+                .row-3{
+                    margin-top: calc(3*78px);
+                }
+                .row-4{
+                    margin-top: calc(4*78px);
+                }
+                .row-5{
+                    margin-top: calc(5*78px);
+                }
+                .whole-container-letter:hover>.standard, .hidden-square{
+                    animation-name: rotate-square-animation;
+                    animation-direction: normal;
+                    animation-timing-function: linear;
+                    animation-duration: 300ms;
+                    animation-fill-mode: forwards;
+                }
+                .whole-container-letter:hover>.standard{
+                    animation-name: rotate-standard-square-animation;
+                }
+                .whole-container-letter:hover>.hidden-square{
+                    animation-name: rotate-hidden-square-animation;
+                }
+                @keyframes rotate-standard-square-animation {
+                    100%{
+                        transform: rotateY(-90deg) translateX(-100%);
+                    }
+                }
+                @keyframes rotate-hidden-square-animation {
+                    100%{
+                        transform: rotateY(0deg) translateX(0%);
+                    }
+                }
+            </style>
+
+            <div id = "target" style="position: absolute; display: block">
+
+            </div>
+            <div class="whole-container-letter col-2" id="ws-0-0-cont" >
+                <div class="wordle-square standard" id="ws-0-0" style="position: absolute;">
+                    <div class="delay-0">S</div>
+                </div>
+                
+                <div class="wordle-square ws-partial hidden-square" id="ws-0-0-hidden" style="position: absolute;">
+                    <div class="">S</div>
+                </div>
+            </div>
 
         </div> 
     </body> 

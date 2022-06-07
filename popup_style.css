@@ -1,5 +1,6 @@
 :root{
     min-width: fit-content;
+    height: 800px;
     font-family: 'Courier New', Courier, monospace;
     background-color: var(--background);
     color: var(--text-colour);
@@ -407,9 +408,7 @@ h1{
 
     
 }
-.progress-bar:hover{
-    animation-direction:normal;
-}
+
 @keyframes moving-stripes {
 
     100%{
