@@ -1,6 +1,6 @@
 # Wordle Chrome Extension 
 
-This is just a prototype of a wordle chrome extensions.
+This is just a prototype of a wordle chrome extensions (A wordle clone -- no association).
 
 Very much in prototype stage at the moment and will be developed further.
 
