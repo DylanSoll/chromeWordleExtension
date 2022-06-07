@@ -1,6 +1,11 @@
 "use strict"
 
 //constant variables
+document.body.addEventListener('click', ()=>{
+    const ws_message_box = document.getElementById('ws_message_box');
+    ws_message_box.hidden = true;
+    ws_message_box.className = 'ws-message-box now-invisible'
+})
 const messages = ['Hacker', 'Excellent', 'Good Guess', 'Good Guess', 'Nice', 'Phew'];
 chrome.storage.local.get(['game', 'settings'],(result)=>{
     //runs on launch
@@ -192,42 +197,3 @@ document.getElementById('open_animations_settings').addEventListener('click', op
 
 document.getElementById('back_to_main_settings').addEventListener('click', back_to_main_settings)
 
-{
-    const container = document.createElement('div');
-    const square = document.createElement('div'); //creates a new div
-    const hidden_square = document.createElement('div')
-    if (1 == 0 && 1 == 0){ //if it is the first square
-        square.className = "wordle-square ws-default ws-active standard"; //make it active
-    }else{
-        square.className = "wordle-square standard";
-    }// else have as default
-    container.className = "whole-container-letter col-0"
-    hidden_square.className = "wordle-square hidden-square ws-correct"
-    square.id = "ws-"+String(0) + "-"+String(0); //creates the id
-    square.style="position: absolute;"
-    hidden_square.style="position: absolute;"
-    square.innerHTML = 'A'
-    container.appendChild(square);
-    container.appendChild(hidden_square)
-    document.getElementById("target").appendChild(container);
-    
-}
-{
-    const container = document.createElement('div');
-    const square = document.createElement('div'); //creates a new div
-    const hidden_square = document.createElement('div')
-    if (1 == 0 && 1 == 0){ //if it is the first square
-        square.className = "wordle-square ws-default ws-active standard"; //make it active
-    }else{
-        square.className = "wordle-square standard";
-    }// else have as default
-    container.className = "whole-container-letter col-1 row-1"
-    hidden_square.className = "wordle-square hidden-square ws-correct"
-    square.id = "ws-"+String(0) + "-"+String(0); //creates the id
-    square.style="position: absolute;"
-    hidden_square.style="position: absolute;"
-    square.innerHTML = 'A'
-    container.appendChild(square);
-    container.appendChild(hidden_square)
-    document.getElementById("target").appendChild(container);
-}

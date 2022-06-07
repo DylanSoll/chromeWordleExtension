@@ -6,13 +6,12 @@ var allow_stats = true
 
 
 function open_settings(){
-    chrome.storage.local.get(['settings'], function(){
-        document.getElementById('ws_main_settings_cont').removeAttribute('hidden');
-        document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
-        document.getElementById('ws_settings_box').removeAttribute('hidden');
-        document.getElementById('ws_dialog_box').removeAttribute('hidden');
-        document.getElementById('ws_stats_box').setAttribute('hidden', true);
-    });
+    document.getElementById('ws_main_settings_cont').removeAttribute('hidden');
+    document.getElementById('ws_colour_settings_cont').setAttribute('hidden', true);
+    document.getElementById('ws_settings_box').removeAttribute('hidden');
+    document.getElementById('ws_dialog_box').removeAttribute('hidden');
+    document.getElementById('ws_stats_box').setAttribute('hidden', true);
+
     return
 }
 
@@ -61,7 +60,6 @@ function open_stats(){
         for (var pos = 1; pos < 7; pos++){
             let number_won = stats.distribution[pos]
             let percent_won = 100 * number_won / largest_won
-            console.log(percent_won)
             document.getElementById('correct-in-'+pos+'-stats-progress-bar').style = `width: ${percent_won}%`
         }
         document.getElementById('games-won').innerHTML =  total_won + "/" + String(stats['games_played'])
@@ -117,6 +115,7 @@ function save_colour_settings(){
         'light_mode':light_mode, 
         'custom_mode':new_custom
     };
+    open_settings()
     chrome.storage.local.get(['settings'], function(result){
         result.settings.colours = colour_settings;
         chrome.storage.local.set(result)

@@ -48,7 +48,7 @@ function update_row(letter_pos){
 }
 
 function update_square(letter_pos, direction){
-    var active_square = document.getElementById("ws-"+letter_pos);
+    let active_square = document.getElementById("ws-"+letter_pos);
     active_square.className = "wordle-square ws-default";
     letter_pos = update_column(letter_pos, direction);
     active_square = document.getElementById("ws-"+letter_pos);
@@ -91,16 +91,25 @@ function create_wordle_map(){
     //creates the parent dive
     for (var row = 0; row < 6; row++){ //needs to be 6 rows
         for (var squarePos = 0; squarePos < 5; squarePos++){
-            //5 letter words
+            const container = document.createElement('div');
             const square = document.createElement('div'); //creates a new div
+            const hidden_square = document.createElement('div')
             if (row == 0 && squarePos == 0){ //if it is the first square
-                square.className = "wordle-square ws-default ws-active"; //make it active
+                square.className = "wordle-square ws-default ws-active standard"; //make it active
             }else{
-                square.className = "wordle-square";
+                square.className = "wordle-square standard";
             }// else have as default
+            container.style = `position: absolute; margin-left: ${squarePos*78}px; margin-top: ${row*78}px`
+            container.id = "ws-"+String(row) + "-"+String(squarePos) + '-cont'
+            hidden_square.className = "wordle-square hidden-square ws-correct"
             square.id = "ws-"+String(row) + "-"+String(squarePos); //creates the id
-            document.getElementById("wordle_parent").appendChild(square);
-            //adds the square to the document
+            square.style="position: absolute;"
+            hidden_square.style="position: absolute;"
+            hidden_square.id = "ws-"+String(row) + "-"+String(squarePos) + '-hidden'
+            container.appendChild(square);
+            container.appendChild(hidden_square)
+            document.getElementById("wordle_parent").appendChild(container);
+
         }
     }
     return;
@@ -110,7 +119,6 @@ function create_wordle_map(){
 
 
 function check_word(word, row, live = true){
-    let correct = false;
     let word_guess = "";
     const letter_occur = reset_guesses(word);
     let positionalGuess = [];
@@ -127,11 +135,16 @@ function check_word(word, row, live = true){
 
     if (word_guess === word){
         for (var col = 0; col <= 4; col++){
-            const square = document.getElementById("ws-"+String(row)+"-"+String(col));
+            const square = document.getElementById(`ws-${String(row)}-${String(col)}`)
+            const hidden_square = document.getElementById(`ws-${String(row)}-${String(col)}-hidden`);
+            const square_cont = document.getElementById(`ws-${String(row)}-${String(col)}-cont`)
             square.className = "wordle-square ws-correct"; 
             
             if (live){
-                square.className = `wordle-square rotate-letter-correct delay-${col}`;
+                square_cont.className = `whole-container-letter`
+                square.className = `wordle-square standard`;
+                hidden_square.className = `wordle-square ws-correct hidden-square`;
+                hidden_square.innerHTML = square.innerHTML
             }
         }
         return true
@@ -139,13 +152,19 @@ function check_word(word, row, live = true){
 
     }else{
         for (var col = 0; col <=4; col++){
-            const square = document.getElementById("ws-"+String(row)+"-"+String(col))
+            const square = document.getElementById(`ws-${String(row)}-${String(col)}`)
+            const hidden_square = document.getElementById(`ws-${String(row)}-${String(col)}-hidden`);
+            const square_cont = document.getElementById(`ws-${String(row)}-${String(col)}-cont`)
             var letter = square.innerHTML
-            square.innerHTML = `<div class = "delay-${col}">${letter}</div>`
+            square.innerHTML = letter
+            hidden_square.innerHTML = letter
+            
             if (positionalGuess.includes(col)){
                 square.className = "wordle-square ws-correct"; 
                 if (live){
-                    square.className = `wordle-square rotate-letter-correct delay-${col}`;
+                    square_cont.className = `whole-container-letter`
+                    square.className = `wordle-square standard`;
+                    hidden_square.className = `wordle-square ws-correct hidden-square`;
                 }
             }
             else if (word.includes(letter)){
@@ -153,7 +172,9 @@ function check_word(word, row, live = true){
                     if (word[col] !== letter){
                         square.className =  "wordle-square ws-partial"
                         if (live){
-                            square.className = `wordle-square rotate-letter-partial delay-${col}`;
+                            square_cont.className = `whole-container-letter`
+                            square.className = `wordle-square standard`;
+                            hidden_square.className = `wordle-square ws-partial hidden-square`;
                         }
                         letter_occur[letter] -= 1
                     }
@@ -161,13 +182,17 @@ function check_word(word, row, live = true){
                 }else{
                     square.className = "wordle-square ws-incorrect"
                     if (live){
-                        square.className = `wordle-square rotate-letter-incorrect delay-${col}`;
+                        square_cont.className = `whole-container-letter`
+                        square.className = `wordle-square standard`;
+                        hidden_square.className = `wordle-square ws-incorrect hidden-square`;
                     }
                 }
             }else if (square.className != "wordle-square ws-correct"){
                 square.className = "wordle-square ws-incorrect"
                 if (live){
-                    square.className = `wordle-square rotate-letter-incorrect delay-${col}`;
+                    square_cont.className = `whole-container-letter`
+                    square.className = `wordle-square standard`;
+                    hidden_square.className = `wordle-square ws-incorrect hidden-square`;
                 }
             }
         }
