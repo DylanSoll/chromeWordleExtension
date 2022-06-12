@@ -162,9 +162,9 @@ function check_word(word, row, live = true){
             if (positionalGuess.includes(col)){
                 square.className = "wordle-square ws-correct"; 
                 if (live){
-                    square_cont.className = `whole-container-letter`
-                    square.className = `wordle-square standard`;
-                    hidden_square.className = `wordle-square ws-correct hidden-square`;
+                    square_cont.className = `whole-container-letter delay-${col}`
+                    square.className = `wordle-square standard delay-${col}`;
+                    hidden_square.className = `wordle-square ws-correct hidden-square delay-${col}`;
                 }
             }
             else if (word.includes(letter)){
@@ -172,9 +172,9 @@ function check_word(word, row, live = true){
                     if (word[col] !== letter){
                         square.className =  "wordle-square ws-partial"
                         if (live){
-                            square_cont.className = `whole-container-letter`
-                            square.className = `wordle-square standard`;
-                            hidden_square.className = `wordle-square ws-partial hidden-square`;
+                            square_cont.className = `whole-container-letter delay-${col}`
+                            square.className = `wordle-square standard delay-${col}`;
+                            hidden_square.className = `wordle-square ws-partial hidden-square delay-${col}`;
                         }
                         letter_occur[letter] -= 1
                     }
@@ -182,17 +182,17 @@ function check_word(word, row, live = true){
                 }else{
                     square.className = "wordle-square ws-incorrect"
                     if (live){
-                        square_cont.className = `whole-container-letter`
-                        square.className = `wordle-square standard`;
-                        hidden_square.className = `wordle-square ws-incorrect hidden-square`;
+                        square_cont.className = `whole-container-letter delay-${col}`
+                        square.className = `wordle-square standard delay-${col}`;
+                        hidden_square.className = `wordle-square ws-incorrect hidden-square delay-${col}`;
                     }
                 }
             }else if (square.className != "wordle-square ws-correct"){
                 square.className = "wordle-square ws-incorrect"
                 if (live){
-                    square_cont.className = `whole-container-letter`
-                    square.className = `wordle-square standard`;
-                    hidden_square.className = `wordle-square ws-incorrect hidden-square`;
+                    square_cont.className = `whole-container-letter delay-${col}`
+                    square.className = `wordle-square standard delay-${col}`;
+                    hidden_square.className = `wordle-square ws-incorrect hidden-square delay-${col}`;
                 }
             }
         }

@@ -60,6 +60,9 @@ function open_stats(){
         for (var pos = 1; pos < 7; pos++){
             let number_won = stats.distribution[pos]
             let percent_won = 100 * number_won / largest_won
+            if ((allow_stats === false) || (number_won === 0)){
+                percent_won = 0
+            }
             document.getElementById('correct-in-'+pos+'-stats-progress-bar').style = `width: ${percent_won}%`
         }
         document.getElementById('games-won').innerHTML =  total_won + "/" + String(stats['games_played'])
